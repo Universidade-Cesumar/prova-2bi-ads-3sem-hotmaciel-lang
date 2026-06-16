@@ -36,3 +36,31 @@ btnCadastrar.addEventListener("click", async () => {
 
 carregarMateriais();
 });
+
+const listaMateriais = document.getElementById("lista-materiais");
+
+async function carregarMateriais() {
+
+    const resposta = await fetch(API_URL);
+    const materiais = await resposta.json();
+
+    listaMateriais.innerHTML = `
+        <tr>
+            <th>Nome</th>
+            <th>Quantidade</th>
+        </tr>
+    `;
+
+    materiais.forEach(material => {
+
+        listaMateriais.innerHTML += `
+            <tr>
+                <td>${material.nome}</td>
+                <td>${material.quantidade}</td>
+            </tr>
+        `;
+
+    });
+}
+
+carregarMateriais();
