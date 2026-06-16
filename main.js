@@ -119,6 +119,8 @@ async function baixarMaterial(id, estoqueAtual) {
         })
     });
 
+    document.getElementById("input-retirada").value = "";
+
     carregarMateriais();
 }
 
