@@ -71,6 +71,11 @@ async function carregarMateriais() {
                 <td>${material.nome}</td>
                 <td>${material.quantidade}</td>
                 <td>
+                    <button class="btn-baixar"
+                        onclick="baixarMaterial('${material.id}', ${material.quantidade})">
+                        Baixar
+                    </button>
+
                     <button class="btn-excluir"
                         onclick="excluirMaterial('${material.id}')">
                         Excluir
