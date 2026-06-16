@@ -1,20 +1,154 @@
-/* Caso queira utilizar framework como Bootstrap para estilização, pode utilizar. Basta ignoar esse arquivo */
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+:root {
+    --bg-fundo: #f4f6f9;
+    --bg-card: #ffffff;
+    --texto-principal: #2d3748;
+    --texto-secundario: #718096;
+    --cor-primaria: #3182ce; 
+    --cor-primaria-hover: #2b6cb0;
+    --cor-sucesso: #38a169; 
+    --cor-sucesso-hover: #2f855a;
+    --cor-perigo: #e53e3e;
+    --cor-perigo-hover: #9b2c2c;
+    --borda: #e2e8f0;
 }
 
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-image: linear-gradient(135deg, #ffffff 0%, #0d3349 100%);
+    background-attachment: fixed; 
+    color: var(--texto-principal);
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh; 
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #1a202c;
+    text-align: center;
+    font-weight: 700;
+}
 input {
     display: block;
-    margin: 10px 0;
-    padding: 8px;
+    width: 100%;
+    max-width: 400px;
+    margin: 12px 0;
+    padding: 12px 16px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--bg-card);
+    color: var(--texto-principal);
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+input:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2);
+}
+
+#input-retirada {
+    border-left: 4px solid var(--cor-sucesso);
+    background-color: #f0fff4;
 }
 
 button {
-    padding: 8px 15px;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+#btn-cadastrar {
+    background-color: var(--cor-primaria);
+    color: white;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px rgba(49, 130, 206, 0.2);
+}
+
+#btn-cadastrar:hover {
+    background-color: var(--cor-primaria-hover);
+}
+
+.btn-baixar {
+    background-color: var(--cor-sucesso);
+    color: white;
+    margin-right: 8px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+.btn-baixar:hover {
+    background-color: var(--cor-sucesso-hover);
+}
+
+.btn-excluir {
+    background-color: transparent;
+    color: var(--cor-perigo);
+    border: 1px solid var(--borda);
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+.btn-excluir:hover {
+    background-color: #fff5f5;
+    border-color: var(--cor-perigo);
 }
 
 table {
     margin-top: 20px;
+    width: 100%;
+    max-width: 800px;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    overflow: hidden; 
+    border: 1px solid var(--borda);
+}
+
+th {
+    background-color: #edf2f7;
+    color: var(--texto-secundario);
+    padding: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-align: left;
+    border-bottom: 2px solid var(--borda);
+}
+
+td {
+    padding: 16px;
+    border-bottom: 1px solid var(--borda);
+    font-size: 0.95rem;
+    color: var(--texto-principal);
+}
+
+tr:hover td {
+    background-color: #f7fafc;
+}
+
+tr:last-child td {
+    border-bottom: none;
 }
