@@ -34,17 +34,6 @@ btnCadastrar.addEventListener("click", async () => {
     inputNome.value = "";
     inputQuantidade.value = "";
 
-    function validarRetirada(estoqueAtual, quantidadeRetirada) {
-
-        if (quantidadeRetirada <= 0) {
-            return false;
-        }
-
-        if (quantidadeRetirada > estoqueAtual) {
-            return false;
-        }
-        return true;
-    }
 
 carregarMateriais();
 });
@@ -60,6 +49,7 @@ async function carregarMateriais() {
         <tr>
             <th>Nome</th>
             <th>Quantidade</th>
+            <th>Ações</th>
         </tr>
     `;
 
@@ -73,6 +63,15 @@ async function carregarMateriais() {
         `;
 
     });
+}
+
+async function excluirMaterial(id) {
+
+    await fetch(`${API_URL}/${id}`, {
+        method: "DELETE"
+    });
+
+    carregarMateriais();
 }
 
 carregarMateriais();
