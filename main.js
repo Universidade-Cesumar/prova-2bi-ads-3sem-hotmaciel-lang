@@ -96,4 +96,30 @@ async function excluirMaterial(id) {
     carregarMateriais();
 }
 
+async function baixarMaterial(id, estoqueAtual) {
+
+    const quantidadeRetirada = Number(
+        document.getElementById("input-retirada").value
+    );
+
+    if (!validarRetirada(estoqueAtual, quantidadeRetirada)) {
+        alert("Quantidade inválida!");
+        return;
+    }
+
+    const novoEstoque = estoqueAtual - quantidadeRetirada;
+
+    await fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            quantidade: novoEstoque
+        })
+    });
+
+    carregarMateriais();
+}
+
 carregarMateriais();
