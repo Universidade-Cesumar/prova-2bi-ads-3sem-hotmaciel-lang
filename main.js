@@ -34,9 +34,20 @@ btnCadastrar.addEventListener("click", async () => {
     inputNome.value = "";
     inputQuantidade.value = "";
 
-
 carregarMateriais();
 });
+
+    function validarRetirada(estoqueAtual, quantidadeRetirada) {
+
+        if (quantidadeRetirada <= 0) {
+            return false;
+        }
+
+        if (quantidadeRetirada > estoqueAtual) {
+            return false;
+        }
+        return true;
+    }
 
 const listaMateriais = document.getElementById("lista-materiais");
 
@@ -59,6 +70,12 @@ async function carregarMateriais() {
             <tr>
                 <td>${material.nome}</td>
                 <td>${material.quantidade}</td>
+                <td>
+                    <button class="btn-excluir"
+                        onclick="excluirMaterial('${material.id}')">
+                        Excluir
+                    </button>
+                </td>
             </tr>
         `;
 
