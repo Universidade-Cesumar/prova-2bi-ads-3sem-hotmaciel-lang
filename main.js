@@ -8,33 +8,40 @@ const btnCadastrar = document.getElementById("btn-cadastrar");
 
 btnCadastrar.addEventListener("click", async () => {
 
-    const nome = inputNome.value;
-    const quantidade = Number(inputQuantidade.value);
+    try {
 
-    if (!nome || quantidade <= 0) {
-        alert("Preencha os campos corretamente!");
-        return;
+        const nome = inputNome.value;
+        const quantidade = Number(inputQuantidade.value);
+
+        if (!nome || quantidade <= 0) {
+            alert("Preencha os campos corretamente!");
+            return;
+        }
+
+        const material = {
+            nome: nome,
+            quantidade: quantidade
+        };
+
+        await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(material)
+        });
+
+        alert("Material cadastrado!");
+
+        inputNome.value = "";
+        inputQuantidade.value = "";
+
+        carregarMateriais();
+
+    } catch (erro) {
+        alert("Erro ao cadastrar material");
+        console.error(erro);
     }
-
-    const material = {
-        nome: nome,
-        quantidade: quantidade
-    };
-
-    await fetch(API_URL, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(material)
-    });
-
-    alert("Material cadastrado!");
-
-    inputNome.value = "";
-    inputQuantidade.value = "";
-
-carregarMateriais();
 });
 
     function validarRetirada(estoqueAtual, quantidadeRetirada) {
@@ -55,8 +62,10 @@ const inputBusca = document.getElementById("input-busca");
 
 async function carregarMateriais() {
 
-    const resposta = await fetch(API_URL);
-    const materiais = await resposta.json();
+    try {
+
+        const resposta = await fetch(API_URL);
+        const materiais = await resposta.json();
     totalItens.textContent = materiais.length;
 
     listaMateriais.innerHTML = `
@@ -94,43 +103,62 @@ async function carregarMateriais() {
         `;
 
     });
+
+        } catch (erro) {
+        alert("Erro ao conectar com a API");
+        console.error(erro);
+    }
 }
 
 async function excluirMaterial(id) {
 
-    await fetch(`${API_URL}/${id}`, {
-        method: "DELETE"
-    });
+    try {
 
-    carregarMateriais();
+        await fetch(`${API_URL}/${id}`, {
+            method: "DELETE"
+        });
+
+        carregarMateriais();
+
+    } catch (erro) {
+        alert("Erro ao excluir material");
+        console.error(erro);
+    }
 }
 
 async function baixarMaterial(id, estoqueAtual) {
 
-    const quantidadeRetirada = Number(
-        document.getElementById("input-retirada").value
-    );
+    try {
 
-    if (!validarRetirada(estoqueAtual, quantidadeRetirada)) {
-        alert("Quantidade inválida!");
-        return;
+        const quantidadeRetirada = Number(
+            document.getElementById("input-retirada").value
+        );
+
+        if (!validarRetirada(estoqueAtual, quantidadeRetirada)) {
+            alert("Quantidade inválida!");
+            return;
+        }
+
+        const novoEstoque = estoqueAtual - quantidadeRetirada;
+
+        await fetch(`${API_URL}/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                quantidade: novoEstoque
+            })
+        });
+
+        document.getElementById("input-retirada").value = "";
+
+        carregarMateriais();
+
+    } catch (erro) {
+        alert("Erro ao atualizar estoque");
+        console.error(erro);
     }
-
-    const novoEstoque = estoqueAtual - quantidadeRetirada;
-
-    await fetch(`${API_URL}/${id}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            quantidade: novoEstoque
-        })
-    });
-
-    document.getElementById("input-retirada").value = "";
-
-    carregarMateriais();
 }
 
 inputBusca.addEventListener("keyup", () => {
