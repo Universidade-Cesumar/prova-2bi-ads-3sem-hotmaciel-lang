@@ -51,6 +51,7 @@ carregarMateriais();
 
 const listaMateriais = document.getElementById("lista-materiais");
 const totalItens = document.getElementById("total-itens");
+const inputBusca = document.getElementById("input-busca");
 
 async function carregarMateriais() {
 
@@ -131,5 +132,23 @@ async function baixarMaterial(id, estoqueAtual) {
 
     carregarMateriais();
 }
+
+inputBusca.addEventListener("keyup", () => {
+
+    const termo = inputBusca.value.toLowerCase();
+
+    const linhas = listaMateriais.getElementsByTagName("tr");
+
+    for (let i = 1; i < linhas.length; i++) {
+
+        const texto = linhas[i].textContent.toLowerCase();
+
+        if (texto.includes(termo)) {
+            linhas[i].style.display = "";
+        } else {
+            linhas[i].style.display = "none";
+        }
+    }
+});
 
 carregarMateriais();
