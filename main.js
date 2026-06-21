@@ -68,8 +68,14 @@ async function carregarMateriais() {
 
     materiais.forEach(material => {
 
+        let classeLinha = "";
+
+        if (material.quantidade < 10) {
+            classeLinha = "estoque-critico";
+        }
+
         listaMateriais.innerHTML += `
-            <tr>
+            <tr class="${classeLinha}">
                 <td>${material.nome}</td>
                 <td>${material.quantidade}</td>
                 <td>

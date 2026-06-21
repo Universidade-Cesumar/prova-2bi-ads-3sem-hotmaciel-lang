@@ -152,3 +152,7 @@ tr:hover td {
 tr:last-child td {
     border-bottom: none;
 }
+
+.estoque-critico {
+    background-color: #ffb3b3;
+}
