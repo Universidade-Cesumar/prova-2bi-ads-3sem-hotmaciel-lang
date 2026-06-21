@@ -50,11 +50,13 @@ carregarMateriais();
     }
 
 const listaMateriais = document.getElementById("lista-materiais");
+const totalItens = document.getElementById("total-itens");
 
 async function carregarMateriais() {
 
     const resposta = await fetch(API_URL);
     const materiais = await resposta.json();
+    totalItens.textContent = materiais.length;
 
     listaMateriais.innerHTML = `
         <tr>
