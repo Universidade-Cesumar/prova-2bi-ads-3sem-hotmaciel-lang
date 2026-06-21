@@ -1,5 +1,15 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/72Bdl6Wn)
 
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/72Bdl6Wn)
+
+# 🏥 Sistema de Controle de Almoxarifado
+
+## 🌐 Projeto Online
+
+https://universidade-cesumar.github.io/prova-2bi-ads-3sem-hotmaciel-lang/
+
+---
+
 # 🏥 Sistema de Controle de Almoxarifado
 
 ## 📌 Sobre o Projeto
@@ -28,6 +38,13 @@ Desenvolver uma aplicação web capaz de controlar a entrada e saída de materia
 - Baixa de estoque
 - Atualização de estoque utilizando PUT
 - Validação para impedir retiradas inválidas
+
+### Sprint 3
+- Barra de pesquisa de materiais
+- Dashboard com total de itens cadastrados
+- Alerta visual para estoque crítico (menos de 10 unidades)
+- Tratamento de erros utilizando try/catch
+- Publicação do projeto na nuvem
 
 ---
 
@@ -103,13 +120,16 @@ A aplicação realiza operações de cadastro, consulta, atualização e exclus�
 
 ---
 
+
+Sugiro:
+
+````md
 ## 🚀 Como Executar o Projeto
 
 1. Clone o repositório:
 
 ```bash
-git clone "https://6a31cb3a7bc5e1c61266299d.mockapi.io/Materiais"
+git clone https://github.com/Universidade-Cesumar/prova-2bi-ads-3sem-hotmaciel-lang.git
 
-```
 ### Autor:
 Projeto desenvolvido por Davi Santos Maciel para a disciplina de Front-End ministrada pelo professor Leonardo utilizando metodologia ágil baseada em Sprints.
